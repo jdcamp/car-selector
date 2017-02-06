@@ -5,6 +5,7 @@ class Car
     private $price;
     private $miles;
     private $handler_fee = 1500;
+    private $image_sorce;
 
     function worthBuying($max_price) {
         return $this->getPrice() < $max_price;
@@ -24,6 +25,9 @@ class Car
     function getHandlerFee() {
         return $this->handler_fee;
     }
+    function getImage() {
+        return $this->image_sorce;
+    }
     function setMiles($new_miles) {
         $this->miles = $new_miles;
     }
@@ -32,6 +36,9 @@ class Car
     }
     function setPrice($new_price) {
         $this->price = $new_price;
+    }
+    function setImage($new_image_sorce) {
+        $this->image_sorce = $new_image_sorce;
     }
 
 
@@ -44,21 +51,25 @@ $porsche = new Car();
 $porsche->setModel("2014 Porsche 911");
 $porsche->setPrice(114991);
 $porsche->setMiles(7864);
+$porsche->setImage("http://www.dan-dare.org/Dan%20FRD/CompactPussycatAni.gif");
 
 $ford = new Car();
 $ford->setModel("2011 Ford F450");
 $ford->setPrice(55995);
 $ford->setMiles(14241);
+$ford->setImage("http://www.dan-dare.org/Dan%20FRD/BoulderMobileAni.gif");
 
 $lexus = new Car();
 $lexus->setModel("2013 Lexus RX350");
 $lexus->setPrice(44700);
 $lexus->setMiles(20000);
+$lexus->setImage("https://media.giphy.com/media/pfeT03JnVSsbC/giphy.gif");
 
 $mercedes = new Car();
 $mercedes->setModel("Mercedes Benz CLS550");
 $mercedes->setPrice(39900);
 $mercedes->setMiles(37979);
+$mercedes->setImage("https://media.tenor.co/images/f6d79c795f0c4961a9aa91d9ee5db2d3/raw");
 
 $cars = array($porsche, $ford, $lexus, $mercedes);
 
@@ -74,6 +85,7 @@ foreach ($cars as $car) {
 <html>
 <head>
     <title>Your Car Dealership's Homepage</title>
+    <link rel="stylesheet" href="css/car-styles.css" type="text/css">
 </head>
 <body>
     <h1>Your Car Dealership</h1>
@@ -83,6 +95,7 @@ foreach ($cars as $car) {
             echo "<p>Stop being so picky</p>";
         } else {
           foreach ($cars_matching_search as $car) {
+            echo  '<img src="'.$car->getImage(). '"/>';
             echo "<li> " . $car->getModel() . "</li>";
             echo "<ul>";
             echo "<li> $".$car->getPrice() . "</li>";
