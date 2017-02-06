@@ -79,14 +79,18 @@ foreach ($cars as $car) {
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
-            foreach ($cars_matching_search as $car) {
-                echo "<li> " . $car->getModel() . "</li>";
-                echo "<ul>";
-                    echo "<li> $".$car->getPrice() . "</li>";
-                    echo "<li> Miles: ".$car->getMiles() . "</li>";
-                    echo "<li> Taxes and fees: $".$car->getHandlerFee() . "</li>";
-                echo "</ul>";
-            }
+        if (count($cars_matching_search) == 0) {
+            echo "<p>Stop being so picky</p>";
+        } else {
+          foreach ($cars_matching_search as $car) {
+            echo "<li> " . $car->getModel() . "</li>";
+            echo "<ul>";
+            echo "<li> $".$car->getPrice() . "</li>";
+            echo "<li> Miles: ".$car->getMiles() . "</li>";
+            echo "<li> Taxes and fees: $".$car->getHandlerFee() . "</li>";
+            echo "</ul>";
+          }
+        }
         ?>
     </ul>
 </body>
